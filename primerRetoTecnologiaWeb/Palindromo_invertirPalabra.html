@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = width-device, initial-scale = 1">
+        <script>
+        
+        /*
+        var boolean = new Boolean(1);
+        document.write(boolean);
+        alert(boolean.toString());
+        */
+         /*   
+        var numero = new Number(3.2);
+        document.write(Number.isInteger(numero));
+        */
+        
+        
+       // DAR LA VUELTA A UNA PALABRA O STRING CUALQUIERA
+        
+        var cadena = prompt("Escribe una palabra"); 
+        var resultado = "";
+        for (let i = cadena.length-1; i >= 0; i--) {
+            resultado += cadena[i];
+        }
+       
+        
+        //    PALINDROMO 2.0      
+
+        // var cadena = prompt("Escribe una palabra");
+        // var cadena2 = cadena.replace(/\s/g,"");
+        // alert(cadena2);
+        // var cadena3 = Array
+        //               .from(cadena2)
+        //               .reverse()
+        //               .join("");
+        // if(cadena3 === cadena2){
+        //     alert(cadena + " es un palindromo");
+        // }else{
+        //     alert(cadena + " No es un palindromo")
+        // }
+        
+         // PALINDROMO 1.0
+
+//         var word1 = prompt("Escribe una palabra");
+//         var a = word1.split(" ");
+//         var word = a.join("");
+//         var n_letra = word.length;
+
+//         for (var i = 0; i < word.length; i++) {
+//  	    n_letra--;
+	
+//  	    if(word[i]==word[n_letra]){
+//  		if(i==n_letra){
+//             document.write(word1+" es un palindromo");
+// 	       break};
+//  	    }else{
+//  		    document.write(word1+" no es un palíndromo")
+//  	       break;
+//  	};
+// }
+      
+      </script>
+        <style>
+
+        </style>
+    </head>
+    <body>
+
+    </body>
+</html>

@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width = width-device,initial-scale=1">
+       
+       <script>
+        
+            var nombreJugador = prompt("Introduce tu nombre de jugador");
+            var nombreIA = "IA";  
+            
+            function jugar() {
+            
+            var contadorJugador = new Number();
+            var contadorIA = new Number();
+                     
+            var piedra = document.getElementById("piedra");
+            var tijera = document.getElementById("tijera");
+            var papel = document.getElementById("papel");
+            var resultado = document.getElementById("resultado");
+            var clasificacion = document.getElementById("btnClasificacion");
+
+            piedra.addEventListener("click",function() {
+
+                var ia = Math.trunc(Math.random()*3+1);
+                switch(ia) {
+                case 1 : resultado.innerHTML = `<img class = "imagen" src="piedra.jpg">`; 
+                        
+                          break; 
+                case 2 : resultado.innerHTML = `<img class = "imagen" src="papel.jpg">`;
+                        contadorIA++;
+                break;
+                case 3 : resultado.innerHTML = `<img class = "imagen" src="tijera.jpg">`;
+                       contadorJugador++;
+                break;   
+            }
+                //sessionStorage.setItem(nombreIA,contadorIA);
+                sessionStorage.setItem(nombreJugador,contadorJugador);   
+                var puntuacion = document.getElementById("puntuacion");
+                puntuacion.innerText = nombreJugador + " : " + contadorJugador + "\r\n" + nombreIA + " : " + contadorIA;    
+            });
+            tijera.addEventListener("click",function() {
+
+                var ia = Math.trunc(Math.random()*3+1);
+                switch(ia) {
+                case 1 : resultado.innerHTML = `<img class = "imagen" src="piedra.jpg">`;
+                        contadorIA++; 
+                        break; 
+                case 2 : resultado.innerHTML = `<img class = "imagen" src="papel.jpg">`;
+                        contadorJugador++;
+                break;
+                case 3 : resultado.innerHTML = `<img class = "imagen" src="tijera.jpg">`;
+                        
+                break;   
+            }  
+                //sessionStorage.setItem(nombreIA,contadorIA);
+                sessionStorage.setItem(nombreJugador,contadorJugador);   
+                var puntuacion = document.getElementById("puntuacion");
+                puntuacion.innerText = nombreJugador + " : " + contadorJugador + "\r\n" + nombreIA + " : " + contadorIA;    
+            });
+            
+            papel.addEventListener("click",function() {
+
+                var ia = Math.trunc(Math.random()*3+1);
+                switch(ia) {
+                case 1 : resultado.innerHTML = `<img class = "imagen" src="piedra.jpg">`;
+                        contadorJugador++; 
+                        break; 
+                case 2 : resultado.innerHTML = `<img class = "imagen" src="papel.jpg">`;
+                        
+                        break;
+                case 3 : resultado.innerHTML = `<img class = "imagen" src="tijera.jpg">`;
+                        contadorIA++;
+                        break;   
+            }
+                //sessionStorage.setItem(nombreIA,contadorIA);
+                sessionStorage.setItem(nombreJugador,contadorJugador);   
+                var puntuacion = document.getElementById("puntuacion");
+                puntuacion.innerText = nombreJugador + " : " + contadorJugador + "\r\n" + nombreIA + " : " + contadorIA;    
+          });    
+             
+             console.info(Object.keys(sessionStorage)); 
+             console.info(Object.values(sessionStorage));
+             
+            clasificacion.addEventListener("click",function() {
+              
+              var lista = document.getElementById("clasificacion");
+              //var jugadores = Object.keys(sessionStorage);
+              //var victorias = Object.values(sessionStorage);
+              // lista.innerHTML =  Object.entries(sessionStorage); 
+              lista.innerHTML = null;
+              //var clasific = Object.values(sessionStorage).sort(function(valor1,valor2) {
+              //  return valor1>valor2;
+              //})
+              for (let i = 0; i < Object.keys(sessionStorage).length; i++) {
+                
+                if(Object.keys[i] == "IA"){sessionStorage.removeItem(nombreIA);}
+                
+                if(i%2 == 0){
+                lista.innerHTML += `<div class = "clasif"> ${Object.keys(sessionStorage)[i]}  :  ${Object.values(sessionStorage)[i]}</div> `;
+                }else{
+                lista.innerHTML += `<div class = "clasif2"> ${Object.keys(sessionStorage)[i]}  :  ${Object.values(sessionStorage)[i]}</div> `
+                }  
+              }
+              });
+              var usuario = document.getElementById("btnUsuarioNuevo");
+              usuario.addEventListener("click", function() {
+                nombreJugador = prompt("Introduce tu nombre");
+                contadorJugador = new Number();
+                contadorIA = new Number();
+                sessionStorage.setItem(nombreJugador,contadorJugador);
+                //sessionStorage.removeItem(nombreIA);
+                //sessionStorage.setItem(nombreIA,contadorIA);
+              })
+            }
+          window.addEventListener("load",jugar);
+       </script>
+       
+       <style>
+               *{
+                
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+              } 
+              body{
+                background-image: -moz-linear-gradient(top right,rgb(125, 48, 248),rgb(241, 178, 231));
+              }
+              #contenedor{
+                display: flex;
+                flex-flow: column wrap;
+                margin: 150px auto;
+                width: 100%;
+                height: 100%;
+                background-image: -moz-linear-gradient(left, rgb(159, 244, 247),rgb(124, 205, 252));
+              }
+              .titulo{
+                font-size: xx-large;
+                font-variant: small-caps;
+                color:beige;
+                text-align: center;
+              }
+              #contenedor2{
+                margin: 10px;
+                display: flex;
+                flex-flow: row nowrap;
+                justify-content: space-evenly;
+              }
+              .imagen{
+                border: 1px solid;
+                border-radius: 50%;
+                width: 140px;
+                height: 140px;
+                background-size: cover;           
+               }
+               .figura{
+                border-radius: 50%;
+                width: 139px;
+                height: 139px;
+               }
+              #resultado{
+                margin: 10px;
+                padding: 10px;
+                text-align: center;
+                font-variant: small-caps;
+                color: darkslateblue;
+                font-size: 30px;
+              }
+              #puntuacion{
+                margin: 10px;
+                text-align: center;
+                font-variant: small-caps;
+                font-size: 30px;
+                color: rgb(24, 3, 59);
+              }
+            #btnClasificacion,#btnUsuarioNuevo{
+              align-self: auto;
+              margin: 10px auto;
+              padding: 10px;
+              font-variant: small-caps;
+              background-image: -moz-linear-gradient(left, rgb(206, 179, 250), rgb(243, 174, 237));
+            }
+            #clasificacion,.clasif{
+              margin: 3px;
+              padding: 1px;
+              /*visibility: hidden;*/
+              font-variant: small-caps;
+              background-image: -moz-linear-gradient(left, rgb(206, 179, 250), rgb(243, 174, 237));
+              text-align: center;
+              font-size: small;
+            }
+            .clasif2{
+              margin: 3px;
+              padding: 1px;
+              font-variant: small-caps;
+              background-image: -moz-linear-gradient(left, rgb(112, 204, 247), rgb(247, 141, 159));
+              text-align: center;
+              font-size: small;
+              
+            }
+        </style>
+    </head>
+    <body>
+        <main id="contenedor">
+            <div class="titulo"><h3>Elige tu opción!</h3></div>
+            <div id="contenedor2">
+             <button type="button" class="figura" id="piedra"><img class = "imagen" src="piedra.jpg"></button>
+             <button type="button" class="figura" id="papel"><img class = "imagen" src="papel.jpg"></button>
+             <button type="button" class="figura" id="tijera"><img class = "imagen" src="tijera.jpg"></button>
+            </div>
+            <div id="resultado"></div>
+            <div id="puntuacion"></div>
+            <button type="button" id="btnUsuarioNuevo">Jugador</button>
+            <button type="button" id="btnClasificacion">Clasificación</button>
+            <did id="clasificacion" class="clasif"></div>
+        </main>
+    </body>
+</html>
